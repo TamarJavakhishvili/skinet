@@ -10,3 +10,9 @@
     width: 30px;
     height: 30px;
 }
+
+a {
+    &.active{
+        color: #7d00fa;
+    }
+}
