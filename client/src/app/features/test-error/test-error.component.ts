@@ -14,7 +14,6 @@ import { environment } from '../../../environments/environment';
 })
 export class TestErrorComponent {
   baseUrl = environment.apiUrl;
-  //baseUrl = 'https://localhost:5001/api/';
   private http = inject(HttpClient);
   validationErrors?: string[];
 
