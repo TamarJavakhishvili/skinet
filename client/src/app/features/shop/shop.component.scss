@@ -1,0 +1,12 @@
+.shopcontainer {
+    margin-bottom: 160px;
+}
+
+
+@media (max-width: 768px) {
+    .shopcontainer {
+      flex-direction: column;
+     
+    }
+     
+  }

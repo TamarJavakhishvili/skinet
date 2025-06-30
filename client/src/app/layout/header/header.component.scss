@@ -16,3 +16,11 @@ a {
         color: #7d00fa;
     }
 }
+
+@media (max-width: 768px) {
+    .headercontainer {
+      flex-direction: column;
+      margin-bottom: 5px;
+    }
+     
+  }
