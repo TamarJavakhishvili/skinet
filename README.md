@@ -52,4 +52,5 @@ to run the project you will need to have installed:
     cd client
     ng serve
 14. Then browse to https://localhost:4200
+15. You can use the Stripe test cards: eg. Visa: 4242424242424242, MC: 5555555555554444, or other test cards available on Stripe website.
   
