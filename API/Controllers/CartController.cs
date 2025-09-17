@@ -9,6 +9,12 @@ namespace API.Controllers;
 public class CartController(ICartService cartService) : BaseApiController
 {
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ShoppingCart>> GetCartById(string id)
     {
         var cart = await cartService.GetCartAsync(id);
