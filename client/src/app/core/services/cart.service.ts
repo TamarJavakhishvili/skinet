@@ -5,11 +5,17 @@ import { Cart, CartItem } from '../../shared/models/cart';
 import { Product } from '../../shared/models/product';
 import { map } from 'rxjs';
 import { DeliveryMethod } from '../../shared/models/deliveryMethod';
+//added
+import { Router } from '@angular/router';
+import { AccountService } from '../services/account.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  accountService = inject(AccountService);  //added here
+  router = inject(Router); 
+
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   cart = signal<Cart | null>(null);
@@ -47,7 +53,14 @@ export class CartService {
     })
   } 
   
+  //do not add to cart, if not logged in
   addItemToCart(item: CartItem | Product, quantity = 1) {
+    
+     if (!this.accountService.currentUser()) {
+      this.router.navigateByUrl('/account/login');
+      return
+    }
+    
     const cart = this.cart() ?? this.createCart();
     if (this.isProduct(item)) {
       item = this.mapProductToCartItem(item);

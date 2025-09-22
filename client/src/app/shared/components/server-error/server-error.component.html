@@ -1,17 +1,30 @@
-<div class="container mt-5 p-4 bg-gray-100 rounded shadow-lg">
-    <h1 class="text-2xl font-semibold mb-4">Internal server error</h1>
+<div class="container mt-5 mb-20 p-4 bg-gray-100 rounded shadow-lg max-w-3xl mx-auto">
+    <h1 class="text-xl sm:text-2xl font-semibold mb-4 text-center sm:text-left">
+        Internal server error
+    </h1>
+
     @if (error) {
-    <h5 class="text-red-600">Error: {{error.message}}</h5>
-    <p class="font-bold mb-2">This error comes from the server</p>
-    <p class="mb-2">What to do next?</p>
-    <ol class="list-decimal ml-5 mb-4">
-        <li class="mb-1">Check the network tab in chrome dev tools </li>
-        <li class="mb-1">Reproduce the error in postman. If same error, don't waste time
-            troubleshooting angular code</li>
+    <h5 class="text-red-600 text-center sm:text-left break-words">Error: {{error.message}}</h5>
+
+    <p class="font-bold mb-2 text-center sm:text-left">
+        This error comes from the server
+    </p>
+
+    <p class="mb-2 text-center sm:text-left">What to do next?</p>
+
+    <ol class="list-decimal ml-5 mb-4 space-y-1 text-sm sm:text-base">
+        <li>Check the network tab in Chrome DevTools</li>
+        <li>Reproduce the error in Postman. If same error, don't waste time troubleshooting Angular code</li>
     </ol>
-    <h5 class="text-lg font-semibold mb-2">Stack trace</h5>
-    <mat-card class="p-4 bg-white">
-        <code class="block whitespace-pre-wrap">{{error.details}}</code>
+
+    <h5 class="text-lg font-semibold mb-2 text-center sm:text-left">
+        Stack trace
+    </h5>
+
+    <mat-card class="p-3 sm:p-4 bg-white overflow-x-auto">
+        <code class="block whitespace-pre-wrap break-words text-xs sm:text-sm">
+        {{error.details}}
+      </code>
     </mat-card>
     }
 </div>

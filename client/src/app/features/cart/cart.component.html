@@ -1,20 +1,22 @@
 <section>
     @if (cartService.cart()?.items?.length! > 0) {
+    <div class="cart-container mt-32 flex flex-wrap gap-6 justify-center px-4">
 
-    <div class="flex w-full items-start gap-6 mt-32">
-        <div class="w-3/4">
+        <!-- Cart Items -->
+        <div class="cart-items flex-1 min-w-[300px] max-w-[800px]">
             @for (item of cartService.cart()?.items; track item.productId) {
             <app-cart-item [item]="item"></app-cart-item>
             }
         </div>
-        <div class="w-1/4">
+
+        <!-- Order Summary -->
+        <div class="order-summary flex-1 min-w-[250px] max-w-[400px]">
             <app-order-summary></app-order-summary>
         </div>
-    </div>
 
+    </div>
     } @else {
     <app-empty-state message="Your shopping cart is empty" icon="remove_shopping_cart" actionText="Go to shop"
-        (action)="onAction()" />
+        (action)="onAction()" class="mt-32 px-4" />
     }
-
 </section>

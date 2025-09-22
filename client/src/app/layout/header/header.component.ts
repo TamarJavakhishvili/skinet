@@ -34,11 +34,15 @@ export class HeaderComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
 
+//added for hamburger button to toggle
+  menuOpen = false;
+
   logout() {
     this.accountService.logout().subscribe({
       next: () => {
         this.accountService.currentUser.set(null);
         this.router.navigateByUrl('/');
+        this.cartService.deleteCart();  //added code
       }
     })
   }

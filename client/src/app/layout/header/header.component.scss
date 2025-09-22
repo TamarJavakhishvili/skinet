@@ -17,10 +17,11 @@ a {
     }
 }
 
+
+
 @media (max-width: 768px) {
-    .headercontainer {
-      flex-direction: column;
-      margin-bottom: 5px;
-    }
-     
+  .headercontainer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
+}

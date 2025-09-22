@@ -1,18 +1,17 @@
-<div class="mt-5 flex justify-center gap-4">
-    <button mat-stroked-button (click)="get500Error()">Test 500 error</button>
-    <button mat-stroked-button (click)="get404Error()">Test 404 error</button>
-    <button mat-stroked-button (click)="get400Error()">Test 400 error</button>
-    <button mat-stroked-button (click)="get401Error()">Test 401 error</button>
-    <button mat-stroked-button (click)="get400ValidationError()">Test validation error</button>
+<div class="mt-5 flex flex-wrap justify-center gap-4 px-4">
+    <button mat-stroked-button class="w-full sm:w-auto" (click)="get500Error()">Test 500 error</button>
+    <button mat-stroked-button class="w-full sm:w-auto" (click)="get404Error()">Test 404 error</button>
+    <button mat-stroked-button class="w-full sm:w-auto" (click)="get400Error()">Test 400 error</button>
+    <button mat-stroked-button class="w-full sm:w-auto" (click)="get401Error()">Test 401 error</button>
+    <button mat-stroked-button class="w-full sm:w-auto" (click)="get400ValidationError()">Test validation error</button>
 </div>
 
 @if (validationErrors) {
-<div class="mx-auto max-w-lg mt-5 bg-red-100">
-    <ul class="space-y-2 p-2">
+<div class="mx-auto max-w-lg mt-5 bg-red-100 rounded-lg shadow p-4">
+    <ul class="space-y-2">
         @for (error of validationErrors; track $index) {
-        <li class="text-red-800 ">{{error}}</li>
+        <li class="text-red-800">{{ error }}</li>
         }
     </ul>
-
 </div>
 }

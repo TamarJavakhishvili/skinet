@@ -3,10 +3,10 @@
 }
 
 
-@media (max-width: 768px) {
-    .shopcontainer {
-      flex-direction: column;
-     
-    }
-     
+
+  @media (max-width: 768px) {
+  .shopcontainer {
+    padding: 0 1rem; 
+    margin-bottom: 140px; 
+  }
   }

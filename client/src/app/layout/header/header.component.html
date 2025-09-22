@@ -1,16 +1,26 @@
-<header class="border-b-gray-600 shadow-md p-3 w-full max-h-20 fixed top-0 z-50 bg-white">
-    <div class="headercontainer flex align-middle items-center justify-between max-w-screen-2xl mx-auto">
+<header class="border-b-gray-600 shadow-md p-3 w-full fixed top-0 z-50 bg-white">
+    <div class="headercontainer flex items-center justify-between max-w-screen-2xl mx-auto">
+
+        <!-- Logo -->
         <img routerLink="/" src="/images/logo.png" alt="app logo" class="max-h-16">
-        <nav class="flex gap-3 my-2 uppercase text-2xl">
+
+        <!-- Hamburger Button (mobile only) -->
+        <button class="md:hidden p-2" (click)="menuOpen = !menuOpen">
+            <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+
+        <!-- Navigation (desktop) -->
+        <nav class="hidden md:flex gap-4 uppercase text-lg md:text-2xl">
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
             <a routerLink="/shop" routerLinkActive="active">Shop</a>
             <a routerLink="/test-error" routerLinkActive="active">Errors</a>
             <a routerLink="/contact" routerLinkActive="active">Contact</a>
-
         </nav>
-        <div class="flex gap-3 align-middle">
+
+        <!-- Right Section (desktop) -->
+        <div class="hidden md:flex gap-3 items-center">
             <a routerLink="/cart" routerLinkActive="active" matBadge="{{cartService.itemCount()}}" matBadgeSize="large"
-                class="custom-badge mt-2 mr-2">
+                class="custom-badge">
                 <mat-icon>shopping_cart</mat-icon>
             </a>
 
@@ -23,29 +33,53 @@
             <button routerLink="/account/login" mat-stroked-button>Login</button>
             <button routerLink="/account/register" mat-stroked-button>Register</button>
             }
-
         </div>
     </div>
+
+    <!--  Mobile Menu (uses @if) -->
+    @if (menuOpen) {
+    <div class="md:hidden flex flex-col gap-4 mt-3 px-4 pb-4 border-t bg-gray-50">
+        <nav class="flex flex-col gap-3 text-lg uppercase">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                (click)="menuOpen = false">Home</a>
+            <a routerLink="/shop" routerLinkActive="active" (click)="menuOpen = false">Shop</a>
+            <a routerLink="/test-error" routerLinkActive="active" (click)="menuOpen = false">Errors</a>
+            <a routerLink="/contact" routerLinkActive="active" (click)="menuOpen = false">Contact</a>
+        </nav>
+
+        <div class="flex flex-col gap-3 mt-4">
+            <a routerLink="/cart" routerLinkActive="active" matBadge="{{cartService.itemCount()}}" matBadgeSize="large"
+                class="custom-badge flex items-center gap-2">
+                <mat-icon>shopping_cart</mat-icon> Cart
+            </a>
+
+            @if (accountService.currentUser()) {
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>arrow_drop_down</mat-icon>
+                <span>{{accountService.currentUser()?.email}}</span>
+            </button>
+            } @else {
+            <button routerLink="/account/login" mat-stroked-button>Login</button>
+            <button routerLink="/account/register" mat-stroked-button>Register</button>
+            }
+        </div>
+    </div>
+    }
 </header>
 
 @if (busyService.loading) {
 <mat-progress-bar mode="indeterminate" class="fixed top-20 z-50"></mat-progress-bar>
 }
 
-
 <mat-menu #menu="matMenu" class="px-5">
     <button mat-menu-item class="px-3" routerLink="/cart">
-        <mat-icon>shopping_cart</mat-icon>
-        My cart
+        <mat-icon>shopping_cart</mat-icon> My cart
     </button>
-
     <button mat-menu-item class="px-3" routerLink="/orders">
-        <mat-icon>history</mat-icon>
-        My orders
+        <mat-icon>history</mat-icon> My orders
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item class="px-3" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        Logout
+        <mat-icon>logout</mat-icon> Logout
     </button>
 </mat-menu>
